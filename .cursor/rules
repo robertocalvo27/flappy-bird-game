@@ -1,0 +1,96 @@
+# 🎮 Flappy Bird - Reglas Específicas de Desarrollo
+
+## 🔄 METODOLOGÍA OBLIGATORIA: Unity-First Development
+
+### ⚠️ REGLA FUNDAMENTAL
+**NUNCA implementar código directamente. SIEMPRE seguir el flujo de 3 fases:**
+
+### 📋 FASE 1: CONFIGURACIÓN EN UNITY (OBLIGATORIA)
+Antes de cualquier código, proporcionar instrucciones DETALLADAS para Unity:
+
+1. **Jerarquía de GameObjects**
+   - Nombres exactos de objetos
+   - Estructura parent-child
+   - Posiciones y transformaciones
+
+2. **Componentes Requeridos**
+   - Qué componentes agregar a cada GameObject
+   - Configuraciones específicas de cada componente
+   - Referencias que deben ser asignadas
+
+3. **Prefabs y Assets**
+   - Modificaciones a prefabs existentes
+   - Creación de nuevos prefabs
+   - Configuración de sprites, materiales, etc.
+
+4. **Interfaz de Usuario**
+   - Canvas y elementos UI
+   - Configuración de botones, textos, imágenes
+   - Anchors y layout groups
+
+5. **Configuración de Escena**
+   - Lighting, cámaras, audio listeners
+   - Tags y layers necesarios
+   - Physics settings si aplica
+
+### ✅ FASE 2: VALIDACIÓN (OBLIGATORIA)
+- Esperar confirmación del usuario que Unity está configurado
+- NO proceder al código hasta recibir el "OK"
+- Si hay problemas, resolver la configuración Unity primero
+
+### 💻 FASE 3: IMPLEMENTACIÓN DE CÓDIGO
+Solo después de validación Unity, proceder con:
+- Modificación de scripts existentes
+- Creación de nuevos scripts
+- Conexión de referencias en código
+- Testing y debugging
+
+## 🚫 PROHIBICIONES ESTRICTAS
+
+1. **NO escribir código** sin configurar Unity primero
+2. **NO asumir** que la configuración Unity está lista
+3. **NO combinar** las fases Unity y código en una sola respuesta
+4. **NO proceder** sin confirmación explícita del usuario
+
+## ✅ FORMATO REQUERIDO PARA MEJORAS
+
+### Estructura de Respuesta Obligatoria:
+
+```
+## 🎯 [NOMBRE DE LA MEJORA]
+
+### 📋 FASE 1: CONFIGURACIÓN EN UNITY
+[Instrucciones detalladas paso a paso]
+
+### ⏸️ PAUSA PARA VALIDACIÓN
+"Antes de continuar con el código, confirma que has completado toda la configuración en Unity y que todo funciona correctamente."
+
+### 💻 FASE 2: CÓDIGO (Solo después de confirmación)
+[Implementación de scripts]
+```
+
+## 🎮 CONTEXTO DEL PROYECTO
+
+- **Desarrollador**: Principiante en Unity, primer juego
+- **Objetivo**: Flappy Bird para su hijo Mateo
+- **Configuración**: Usuario tiene Unity en una pantalla, Cursor en otra
+- **Estado actual**: Juego base funcional con documentación en docs/mejoras-propuestas.md
+
+## 📚 REFERENCIAS IMPORTANTES
+
+- Plan de mejoras: `docs/mejoras-propuestas.md`
+- Scripts existentes: `Assets/BirdScript.cs`, `Assets/LogicScript.cs`, etc.
+- Repositorio: https://github.com/robertocalvo27/flappy-bird-game.git
+
+## 🔄 WORKFLOW DE GIT
+
+Para cada mejora:
+1. Crear rama: `git checkout -b feature/nombre-mejora`
+2. Implementar siguiendo metodología Unity-first
+3. Commit frecuentes con mensajes descriptivos
+4. Push: `git push origin feature/nombre-mejora`
+5. Merge a main cuando esté completo
+
+---
+
+**RECORDATORIO**: El éxito del proyecto depende de seguir ESTRICTAMENTE esta metodología. El usuario necesita configurar Unity correctamente antes de cualquier código.

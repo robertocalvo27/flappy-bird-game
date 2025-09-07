@@ -145,6 +145,29 @@
 
 ---
 
+## 🔄 **Metodología de Desarrollo**
+
+### **Flujo de Trabajo Establecido:**
+1. **📋 FASE UNITY**: Instrucciones detalladas para configurar en Unity
+   - GameObjects y jerarquía
+   - Componentes necesarios
+   - Configuración de prefabs
+   - Elementos de UI
+   - Configuraciones de escena
+
+2. **✅ VALIDACIÓN**: El desarrollador confirma que todo está configurado correctamente
+
+3. **💻 FASE CÓDIGO**: Implementación de scripts y lógica
+   - Modificación de scripts existentes
+   - Creación de nuevos scripts
+   - Conexión de referencias
+   - Testing y ajustes
+
+### **⚠️ Regla Importante**: 
+**NO saltar directo al código. Siempre configurar Unity primero, validar, y después programar.**
+
+---
+
 ## 📝 **Notas de Desarrollo**
 
 ### **Archivos Principales a Modificar:**
