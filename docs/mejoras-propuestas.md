@@ -20,11 +20,11 @@
 - **Archivos creados**: ✅ `MainMenuScript.cs`, ✅ escena "MainMenu"
 - **Elementos UI**: ✅ Fondo con IA, ✅ Botones "Jugar" y "Salir" funcionales
 
-#### 2. **Animación del Pájaro**
+#### 2. **Animación del Pájaro** ✅ **COMPLETADO**
 - **Descripción**: Rotación del pájaro según la velocidad de vuelo
 - **Beneficios**: Más realista y dinámico visualmente
-- **Modificaciones**: Actualizar `BirdScript.cs`
-- **Técnica**: `transform.rotation` basado en `rigidbody.velocity.y`
+- **Implementado**: ✅ Rotación suave basada en velocidad vertical
+- **Mejoras**: ✅ Física más realista, ✅ Dificultad ajustada, ✅ Controles mejorados
 
 #### 3. **Mejores Efectos de Sonido**
 - **Descripción**: Sonidos para volar, puntuar y game over

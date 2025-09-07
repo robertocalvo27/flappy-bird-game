@@ -590,9 +590,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BirdScript
   myRigidbody: {fileID: 1053343384}
-  flapStrenght: 10
+  flapStrenght: 5
   logic: {fileID: 0}
   birdIsAlive: 1
+  rotationSpeed: 3
+  maxRotationAngle: 25
+  minRotationAngle: -90
 --- !u!58 &1053343383
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1264,6 +1267,9 @@ MonoBehaviour:
   flapStrenght: 10
   logic: {fileID: 0}
   birdIsAlive: 1
+  rotationSpeed: 3
+  maxRotationAngle: 25
+  minRotationAngle: -90
 --- !u!1 &2137790676
 GameObject:
   m_ObjectHideFlags: 0
