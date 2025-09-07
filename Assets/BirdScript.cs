@@ -11,6 +11,9 @@ public class BirdScript : MonoBehaviour
     public float rotationSpeed = 3f; // Velocidad de rotación
     public float maxRotationAngle = 25f; // Ángulo máximo de rotación
     public float minRotationAngle = -90f; // Ángulo mínimo de rotación (caída)
+    
+    [Header("Audio")]
+    private AudioSource flyingAudioSource; // Sonido de volar
 
 
     // Awake se llama justo al iniciar el objeto, antes que Start.
@@ -21,6 +24,8 @@ public class BirdScript : MonoBehaviour
         // y lo asigna a tu variable 'myRigidbody'.
         myRigidbody = GetComponent<Rigidbody2D>();
         
+        // Buscar el componente AudioSource para el sonido de volar
+        flyingAudioSource = GetComponent<AudioSource>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +50,12 @@ public class BirdScript : MonoBehaviour
             
             // Aplica impulso hacia arriba (más realista que resetear completamente)
             myRigidbody.linearVelocity = new Vector2(currentVelocity.x, currentVelocity.y + flapStrenght);
+            
+            // Reproducir sonido de volar
+            if (flyingAudioSource != null)
+            {
+                flyingAudioSource.Play();
+            }
         }
 
         // Aplicar rotación basada en la velocidad vertical

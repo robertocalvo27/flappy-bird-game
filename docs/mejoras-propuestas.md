@@ -26,11 +26,12 @@
 - **Implementado**: ✅ Rotación suave basada en velocidad vertical
 - **Mejoras**: ✅ Física más realista, ✅ Dificultad ajustada, ✅ Controles mejorados
 
-#### 3. **Mejores Efectos de Sonido**
+#### 3. **Mejores Efectos de Sonido** ✅ **COMPLETADO**
 - **Descripción**: Sonidos para volar, puntuar y game over
 - **Beneficios**: Experiencia más inmersiva
-- **Assets necesarios**: 3-4 archivos de audio (.wav/.ogg)
-- **Componentes**: AudioSource en objetos relevantes
+- **Implementado**: ✅ 5 archivos de audio MP3 importados
+- **Sonidos**: ✅ Flying, ✅ Point/Score, ✅ Game Over, ✅ Música de fondo
+- **AudioSources**: ✅ Bird, ✅ Logic Manager (2x), ✅ Main Camera
 
 #### 4. **High Score (Mejor Puntuación)**
 - **Descripción**: Guardar y mostrar la mejor puntuación
