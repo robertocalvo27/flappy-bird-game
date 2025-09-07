@@ -14,11 +14,11 @@
 
 ### 🟢 **NIVEL 1: Mejoras Básicas (Fáciles - 1-2 horas c/u)**
 
-#### 1. **Menú Principal** 
+#### 1. **Menú Principal** ✅ **COMPLETADO**
 - **Descripción**: Pantalla de inicio antes del juego
 - **Beneficios**: Más profesional, permite configuraciones
-- **Archivos a crear**: `MainMenuScript.cs`, nueva escena "MainMenu"
-- **Elementos UI**: Título del juego, botón "Jugar", botón "Salir"
+- **Archivos creados**: ✅ `MainMenuScript.cs`, ✅ escena "MainMenu"
+- **Elementos UI**: ✅ Fondo con IA, ✅ Botones "Jugar" y "Salir" funcionales
 
 #### 2. **Animación del Pájaro**
 - **Descripción**: Rotación del pájaro según la velocidad de vuelo
