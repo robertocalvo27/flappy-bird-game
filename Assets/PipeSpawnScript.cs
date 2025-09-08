@@ -30,11 +30,36 @@ public class PipeSpawnScript : MonoBehaviour
     // Ahora la función hace todo el trabajo, por lo que es reutilizable
     void spawnPipe()
     {
-        // 1. Calcula los límites de altura JUSTO ANTES de usarlos
-        float lowestPoint = transform.position.y - heightOffset;
-        float highestPoint = transform.position.y + heightOffset;
+        // Define la altura del hueco entre las tuberías.
+        // Un valor más alto hace el juego más fácil.
+        float gapSize = 10f; // Puedes ajustar este valor desde el Inspector si lo haces público.
 
-        // 2. Usa esas variables locales para crear la tubería
-        Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), 0), transform.rotation);
+        // Calcula los límites verticales seguros para el CENTRO del hueco.
+        float screenTop = Camera.main.orthographicSize - (gapSize / 2);
+        float screenBottom = -Camera.main.orthographicSize + (gapSize / 2);
+
+        // Elige una posición Y aleatoria para el centro del hueco.
+        float gapCenterY = Random.Range(screenBottom, screenTop);
+
+        // Crea el prefab de las tuberías en la posición del spawner pero con la altura del centro del hueco.
+        GameObject newPipe = Instantiate(pipe, new Vector3(transform.position.x, gapCenterY, 0), transform.rotation);
+
+        // --- AJUSTE PRECISO DEL HUECO ---
+        // Ahora, posicionamos las tuberías superior e inferior RELATIVO al centro del hueco.
+
+        Transform topPipe = newPipe.transform.Find("TopPipe");
+        Transform bottomPipe = newPipe.transform.Find("BottomPipe");
+
+        if (topPipe == null || bottomPipe == null)
+        {
+            Debug.LogError("El prefab 'Pipes' no tiene hijos llamados 'TopPipe' y 'BottomPipe'.");
+            return;
+        }
+
+        // Coloca la tubería superior justo encima del centro del hueco.
+        topPipe.localPosition = new Vector3(0, gapSize / 2, 0);
+
+        // Coloca la tubería inferior justo debajo del centro del hueco.
+        bottomPipe.localPosition = new Vector3(0, -gapSize / 2, 0);
     }
 }

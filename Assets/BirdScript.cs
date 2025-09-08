@@ -14,7 +14,13 @@ public class BirdScript : MonoBehaviour
     
     [Header("Audio")]
     private AudioSource flyingAudioSource; // Sonido de volar
+    
+    [Header("Animator")]
+    private Animator birdAnimator; // Componente Animator del pájaro
 
+    [Header("Límites de Altura")]
+    public float topBoundary = 15f; // Límite superior de la pantalla
+    public float bottomBoundary = -15f; // Límite inferior (causa Game Over)
 
     // Awake se llama justo al iniciar el objeto, antes que Start.
     // Es el lugar ideal para buscar componentes.
@@ -26,6 +32,9 @@ public class BirdScript : MonoBehaviour
         
         // Buscar el componente AudioSource para el sonido de volar
         flyingAudioSource = GetComponent<AudioSource>();
+        
+        // Buscar el componente Animator
+        birdAnimator = GetComponent<Animator>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,6 +71,33 @@ public class BirdScript : MonoBehaviour
         if (birdIsAlive)
         {
             RotateBird();
+        }
+
+        // Comprobar límites de altura
+        CheckBoundaries();
+    }
+
+    /// <summary>
+    /// Comprueba si el pájaro se ha salido de los límites de la pantalla.
+    /// </summary>
+    void CheckBoundaries()
+    {
+        // Si el pájaro toca el límite superior, no le dejamos subir más
+        if (transform.position.y > topBoundary)
+        {
+            // Forzamos al pájaro a quedarse en la posición del límite y anulamos su velocidad hacia arriba
+            transform.position = new Vector3(transform.position.x, topBoundary, transform.position.z);
+            if (myRigidbody.linearVelocity.y > 0)
+            {
+                myRigidbody.linearVelocity = new Vector2(myRigidbody.linearVelocity.x, 0);
+            }
+        }
+
+        // Si el pájaro toca el límite inferior, es Game Over
+        if (transform.position.y < bottomBoundary && birdIsAlive)
+        {
+            logic.gameOver();
+            birdIsAlive = false;
         }
     }
 
@@ -105,5 +141,11 @@ public class BirdScript : MonoBehaviour
     {
         logic.gameOver();
         birdIsAlive = false;
+        
+        // Detener la animación de aleteo
+        if (birdAnimator != null)
+        {
+            birdAnimator.enabled = false;
+        }
     }
 }
