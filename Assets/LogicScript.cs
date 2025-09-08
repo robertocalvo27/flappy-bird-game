@@ -9,6 +9,9 @@ public class LogicScript : MonoBehaviour
     public Text scoreText;
     public GameObject gameOverScreen;
     
+    [Header("Estado del Juego")]
+    public bool doubleScoreActive = false;
+
     [Header("Temporizador")]
     public float gameTimeLimit = 60f; // Límite de tiempo en segundos
     public Text timerText; // Referencia al texto del temporizador
@@ -67,24 +70,58 @@ public class LogicScript : MonoBehaviour
                 Debug.Log("¡Se acabó el tiempo!");
                 timeLeft = 0;
                 timerIsRunning = false;
+
+                // Encuentra el pájaro y desactívalo para que no se pueda seguir jugando
+                BirdScript bird = FindObjectOfType<BirdScript>();
+                if (bird != null)
+                {
+                    bird.birdIsAlive = false;
+                }
+                
                 gameOver(); // Llama a la función de Game Over
             }
         }
+    }
+
+    public void AddTime(float timeToAdd)
+    {
+        timeLeft += timeToAdd;
+        Debug.Log("¡+ " + timeToAdd + " segundos añadidos!");
+        // Podríamos añadir aquí un efecto visual al temporizador, como un parpadeo.
+    }
+
+    public void AddExtraPoints(int pointsToAdd)
+    {
+        playerScore += pointsToAdd;
+        scoreText.text = playerScore.ToString();
+        Debug.Log("¡+ " + pointsToAdd + " puntos extra!");
     }
 
     void UpdateTimerDisplay()
     {
         if (timerText != null)
         {
-            // Muestra el tiempo redondeado al entero más cercano
-            timerText.text = "Tiempo: " + Mathf.CeilToInt(timeLeft).ToString();
+            // Calcula minutos y segundos
+            float minutes = Mathf.FloorToInt(timeLeft / 60);
+            float seconds = Mathf.FloorToInt(timeLeft % 60);
+
+            // Formatea el texto como 00:00
+            timerText.text = string.Format("Tiempo: {0:00}:{1:00}", minutes, seconds);
         }
     }
 
     [ContextMenu("Increase Score")]
     public void addScore()
     {
-        playerScore = playerScore + 1;
+        if (doubleScoreActive)
+        {
+            playerScore = playerScore + 2; // Suma 2 puntos si el power-up está activo
+        }
+        else
+        {
+            playerScore = playerScore + 1; // Suma 1 punto normalmente
+        }
+        
         scoreText.text = playerScore.ToString();
         // Este mensaje nos confirmará que la puntuación se está sumando
         Debug.Log("Puntuación Aumentada a: " + playerScore);

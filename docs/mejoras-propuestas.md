@@ -63,13 +63,17 @@
   - ✅ Efecto de "chispas" amarillas al puntuar (`ScoreParticles`) - *Pendiente de revisión con Mateo*.
 - **Técnica**: ✅ Prefabs de Particle System activados por código desde `BirdScript` y `LogicScript`.
 
-#### 8. **Power-ups y Elementos Especiales**
+#### 8. **Power-ups y Elementos Especiales** ✅ **COMPLETADO**
 - **Descripción**: Elementos que dan habilidades temporales
-- **Tipos sugeridos**:
-  - 🌟 **Estrella**: Puntuación doble por 5 segundos
-  - 🛡️ **Escudo**: Protección contra 1 colisión
-  - ⚡ **Velocidad**: Movimiento más rápido temporalmente
-- **Implementación**: Nuevos prefabs, sistema de spawning
+- **Implementado**: 
+  - ✅ **Modo de Juego "Fiebre del Tiempo"**: Base con temporizador de 60s.
+  - ✅ **Sistema de 3 Power-ups**: Estrella, Gema de Puntos y Reloj de Tiempo.
+  - ✅ **Generación Aleatoria**: Los power-ups aparecen con una probabilidad y posición vertical aleatoria, añadiendo desafío.
+- **Efectos**:
+  - 🌟 **Estrella**: Invencibilidad por 5s + Puntuación Doble.
+  - 💎 **Gema**: +5 Puntos instantáneos.
+  - ⏱️ **Reloj**: +5 Segundos al temporizador.
+- **Técnica**: ✅ Prefabs con tags, `switch` en `OnTriggerEnter2D` para diferenciar efectos.
 
 #### 9. **Diferentes Tipos de Tuberías**
 - **Descripción**: Tuberías especiales con diferentes puntuaciones

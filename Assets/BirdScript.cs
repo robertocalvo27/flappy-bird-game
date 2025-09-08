@@ -120,8 +120,23 @@ public class BirdScript : MonoBehaviour
         // Comprueba si ha chocado con un power-up
         if (other.gameObject.CompareTag("PowerUp"))
         {
-            // Activa la invencibilidad
-            StartCoroutine(ActivateInvincibility());
+            // Diferencia qué power-up ha recogido basándose en el nombre del prefab
+            switch (other.gameObject.name)
+            {
+                case "StarPowerUp(Clone)":
+                    // Activa la invencibilidad y puntos dobles
+                    StartCoroutine(ActivateInvincibility());
+                    break;
+                case "TimePowerUp(Clone)":
+                    // Añade tiempo extra
+                    LogicScript.Instance.AddTime(5f); // Añade 5 segundos
+                    break;
+                case "PointsPowerUp(Clone)":
+                    // Añade puntos extra
+                    LogicScript.Instance.AddExtraPoints(5); // Añade 5 puntos
+                    break;
+            }
+
             // Destruye el objeto del power-up
             Destroy(other.gameObject);
         }
@@ -133,7 +148,8 @@ public class BirdScript : MonoBehaviour
     private System.Collections.IEnumerator ActivateInvincibility()
     {
         isInvincible = true;
-        Debug.Log("¡Pájaro es INVENCIBLE!");
+        LogicScript.Instance.doubleScoreActive = true; // Activa la puntuación doble
+        Debug.Log("¡Pájaro es INVENCIBLE y con PUNTOS DOBLES!");
 
         // Cambia el color del pájaro para dar feedback visual
         if (birdSpriteRenderer != null)
@@ -146,6 +162,7 @@ public class BirdScript : MonoBehaviour
 
         // Desactiva la invencibilidad y restaura el color
         isInvincible = false;
+        LogicScript.Instance.doubleScoreActive = false; // Desactiva la puntuación doble
         if (birdSpriteRenderer != null)
         {
             birdSpriteRenderer.color = Color.white; // Restaura el color original
