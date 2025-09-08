@@ -7,6 +7,11 @@ public class PipeSpawnScript : MonoBehaviour
     private float timer = 0;
     public float heightOffset = 5; // Define qué tan arriba o abajo pueden aparecer
 
+    [Header("Power-ups")]
+    public GameObject starPowerUpPrefab; // Referencia al prefab de la estrella
+    [Range(0, 1)]
+    public float powerUpSpawnChance = 0.2f; // 20% de probabilidad de que aparezca un power-up
+
     void Start()
     {
         // Llamamos a spawnPipe una vez al inicio
@@ -44,6 +49,16 @@ public class PipeSpawnScript : MonoBehaviour
         // Crea el prefab de las tuberías en la posición del spawner pero con la altura del centro del hueco.
         GameObject newPipe = Instantiate(pipe, new Vector3(transform.position.x, gapCenterY, 0), transform.rotation);
 
+        // --- LÓGICA DE SPAWN DE POWER-UP ---
+        // Con una cierta probabilidad, instancia un power-up en el centro del hueco.
+        if (Random.value < powerUpSpawnChance) // Random.value devuelve un número entre 0 y 1
+        {
+            if (starPowerUpPrefab != null)
+            {
+                Instantiate(starPowerUpPrefab, new Vector3(transform.position.x, gapCenterY, 0), Quaternion.identity);
+            }
+        }
+        
         // --- AJUSTE PRECISO DEL HUECO ---
         // Ahora, posicionamos las tuberías superior e inferior RELATIVO al centro del hueco.
 
