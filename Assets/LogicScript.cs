@@ -9,6 +9,12 @@ public class LogicScript : MonoBehaviour
     public Text scoreText;
     public GameObject gameOverScreen;
     
+    [Header("Temporizador")]
+    public float gameTimeLimit = 60f; // Límite de tiempo en segundos
+    public Text timerText; // Referencia al texto del temporizador
+    private float timeLeft;
+    private bool timerIsRunning = false;
+    
     [Header("Partículas")]
     public GameObject scoreParticlesPrefab; // Prefab de partículas de puntuación
 
@@ -40,6 +46,38 @@ public class LogicScript : MonoBehaviour
         {
             scoreAudioSource = audioSources[0]; // Primer AudioSource (point-sound)
             gameOverAudioSource = audioSources[1]; // Segundo AudioSource (gameover-sound)
+        }
+
+        // Iniciar el temporizador
+        timeLeft = gameTimeLimit;
+        timerIsRunning = true;
+    }
+
+    void Update()
+    {
+        if (timerIsRunning)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+                UpdateTimerDisplay();
+            }
+            else
+            {
+                Debug.Log("¡Se acabó el tiempo!");
+                timeLeft = 0;
+                timerIsRunning = false;
+                gameOver(); // Llama a la función de Game Over
+            }
+        }
+    }
+
+    void UpdateTimerDisplay()
+    {
+        if (timerText != null)
+        {
+            // Muestra el tiempo redondeado al entero más cercano
+            timerText.text = "Tiempo: " + Mathf.CeilToInt(timeLeft).ToString();
         }
     }
 
