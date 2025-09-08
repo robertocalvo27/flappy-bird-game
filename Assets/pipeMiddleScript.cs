@@ -36,6 +36,12 @@ private void OnTriggerEnter2D(Collider2D collision)
         // Este nuevo debug nos dirá si la etiqueta es correcta
         Debug.Log("¡Colisión con el Player detectada!"); 
         logic.addScore();
+        
+        // Llama a la función de partículas en el LogicScript, pasándole su propia posición
+        if (LogicScript.Instance != null)
+        {
+            LogicScript.Instance.TriggerScoreParticles(transform.position);
+        }
     }
 }
 }

@@ -9,6 +9,9 @@ public class LogicScript : MonoBehaviour
     public Text scoreText;
     public GameObject gameOverScreen;
     
+    [Header("Partículas")]
+    public GameObject scoreParticlesPrefab; // Prefab de partículas de puntuación
+
     [Header("Audio")]
     private AudioSource[] audioSources; // Array de AudioSources
     private AudioSource scoreAudioSource; // Sonido de puntuar
@@ -52,6 +55,18 @@ public class LogicScript : MonoBehaviour
         if (scoreAudioSource != null)
         {
             scoreAudioSource.Play();
+        }
+
+        // Instanciar partículas de puntuación
+        // Necesitamos una referencia al objeto que activa el trigger para saber dónde instanciarlas.
+        // Esto lo añadiremos en pipeMiddleScript.
+    }
+
+    public void TriggerScoreParticles(Vector3 position)
+    {
+        if (scoreParticlesPrefab != null)
+        {
+            Instantiate(scoreParticlesPrefab, position, Quaternion.identity);
         }
     }
 

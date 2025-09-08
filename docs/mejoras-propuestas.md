@@ -55,11 +55,13 @@
 - **Implementado**: ✅ Velocidad de tuberías aumenta con la puntuación (`playerScore`).
 - **Ajustes**: ✅ `LogicScript` como Singleton, ✅ `PipeMoveScript` lee la puntuación, ✅ `PipeSpawnScript` corregido para evitar tuberías flotantes.
 
-#### 7. **Efectos de Partículas**
+#### 7. **Efectos de Partículas** ✅ **COMPLETADO**
 - **Descripción**: Explosiones al chocar, estrellas al puntuar
 - **Beneficios**: Feedback visual espectacular
-- **Componentes Unity**: Particle System
-- **Eventos**: Colisión, puntuación, power-ups
+- **Implementado**: 
+  - ✅ Efecto de explosión de "plumas" azules al morir (`DeathParticles`).
+  - ✅ Efecto de "chispas" amarillas al puntuar (`ScoreParticles`) - *Pendiente de revisión con Mateo*.
+- **Técnica**: ✅ Prefabs de Particle System activados por código desde `BirdScript` y `LogicScript`.
 
 #### 8. **Power-ups y Elementos Especiales**
 - **Descripción**: Elementos que dan habilidades temporales
