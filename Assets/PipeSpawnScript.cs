@@ -8,7 +8,7 @@ public class PipeSpawnScript : MonoBehaviour
     public float heightOffset = 5; // Define qué tan arriba o abajo pueden aparecer
 
     [Header("Power-ups")]
-    public GameObject starPowerUpPrefab; // Referencia al prefab de la estrella
+    public GameObject[] powerUpPrefabs; // Lista de todos los prefabs de power-ups
     [Range(0, 1)]
     public float powerUpSpawnChance = 0.2f; // 20% de probabilidad de que aparezca un power-up
 
@@ -51,11 +51,20 @@ public class PipeSpawnScript : MonoBehaviour
 
         // --- LÓGICA DE SPAWN DE POWER-UP ---
         // Con una cierta probabilidad, instancia un power-up en el centro del hueco.
-        if (Random.value < powerUpSpawnChance) // Random.value devuelve un número entre 0 y 1
+        if (Random.value < powerUpSpawnChance)
         {
-            if (starPowerUpPrefab != null)
+            // Elige un power-up aleatorio de la lista
+            if (powerUpPrefabs != null && powerUpPrefabs.Length > 0)
             {
-                Instantiate(starPowerUpPrefab, new Vector3(transform.position.x, gapCenterY, 0), Quaternion.identity);
+                int randomIndex = Random.Range(0, powerUpPrefabs.Length);
+                GameObject randomPowerUp = powerUpPrefabs[randomIndex];
+                
+                // --- AJUSTE DE DIFICULTAD ---
+                // Añade una pequeña desviación vertical aleatoria para que no siempre aparezca en el centro.
+                float randomYOffset = Random.Range(-2f, 2f); // Se moverá hasta 2 unidades arriba o abajo.
+                Vector3 powerUpPosition = new Vector3(transform.position.x, gapCenterY + randomYOffset, 0);
+
+                Instantiate(randomPowerUp, powerUpPosition, Quaternion.identity);
             }
         }
         
