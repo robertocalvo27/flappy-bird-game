@@ -25,6 +25,11 @@ public class BirdScript : MonoBehaviour
     public float topBoundary = 15f; // Límite superior de la pantalla
     public float bottomBoundary = -15f; // Límite inferior (causa Game Over)
 
+    [Header("Power-up de Invencibilidad")]
+    private bool isInvincible = false;
+    public float invincibilityDuration = 5f; // Duración de la invencibilidad en segundos
+    private SpriteRenderer birdSpriteRenderer;
+
     // Awake se llama justo al iniciar el objeto, antes que Start.
     // Es el lugar ideal para buscar componentes.
     void Awake()
@@ -38,6 +43,9 @@ public class BirdScript : MonoBehaviour
         
         // Buscar el componente Animator
         birdAnimator = GetComponent<Animator>();
+
+        // Buscar el SpriteRenderer para cambiar el color
+        birdSpriteRenderer = GetComponent<SpriteRenderer>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -105,6 +113,47 @@ public class BirdScript : MonoBehaviour
     }
 
     /// <summary>
+    /// Se activa cuando el pájaro entra en un Trigger Collider.
+    /// </summary>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Comprueba si ha chocado con un power-up
+        if (other.gameObject.CompareTag("PowerUp"))
+        {
+            // Activa la invencibilidad
+            StartCoroutine(ActivateInvincibility());
+            // Destruye el objeto del power-up
+            Destroy(other.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Activa la invencibilidad del pájaro por un tiempo limitado.
+    /// </summary>
+    private System.Collections.IEnumerator ActivateInvincibility()
+    {
+        isInvincible = true;
+        Debug.Log("¡Pájaro es INVENCIBLE!");
+
+        // Cambia el color del pájaro para dar feedback visual
+        if (birdSpriteRenderer != null)
+        {
+            birdSpriteRenderer.color = Color.yellow; // Cambia a amarillo brillante
+        }
+
+        // Espera por la duración de la invencibilidad
+        yield return new WaitForSeconds(invincibilityDuration);
+
+        // Desactiva la invencibilidad y restaura el color
+        isInvincible = false;
+        if (birdSpriteRenderer != null)
+        {
+            birdSpriteRenderer.color = Color.white; // Restaura el color original
+        }
+        Debug.Log("Invencibilidad TERMINADA.");
+    }
+
+    /// <summary>
     /// Rota el pájaro según su velocidad vertical para crear animación realista
     /// </summary>
     void RotateBird()
@@ -142,6 +191,14 @@ public class BirdScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // Si el pájaro es invencible, ignora la colisión con las tuberías.
+        if (isInvincible)
+        {
+            // Podríamos añadir aquí una comprobación de si la colisión es con una tubería,
+            // pero por ahora, la invencibilidad lo protege de todo.
+            return;
+        }
+
         logic.gameOver();
         birdIsAlive = false;
         
