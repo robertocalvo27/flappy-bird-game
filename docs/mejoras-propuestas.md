@@ -39,10 +39,11 @@
 - **Técnica**: `PlayerPrefs` para persistencia de datos
 - **UI**: Mostrar en Game Over y menú principal
 
-#### 5. **Mejor Interfaz de Usuario**
+#### 5. **Mejor Interfaz de Usuario** ✅ **COMPLETADO**
 - **Descripción**: Fuentes más atractivas, colores, efectos
 - **Beneficios**: Aspecto más profesional y atractivo
-- **Elementos**: Nuevas fuentes, gradientes, sombras
+- **Implementado**: ✅ Fondo parallax, ✅ Textos mejorados (tamaño, color), ✅ Sombras en UI
+- **Bugs Corregidos**: ✅ Order in Layer, ✅ Score Trigger
 
 ---
 
