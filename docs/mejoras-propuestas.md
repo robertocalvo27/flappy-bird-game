@@ -49,11 +49,11 @@
 
 ### 🟡 **NIVEL 2: Características Intermedias (Moderadas - 2-4 horas c/u)**
 
-#### 6. **Sistema de Dificultad Progresiva**
+#### 6. **Sistema de Dificultad Progresiva** ✅ **COMPLETADO**
 - **Descripción**: Aumentar velocidad de tuberías gradualmente
 - **Beneficios**: Mantiene el desafío interesante
-- **Implementación**: Modificar `PipeMoveScript.cs` y `PipeSpawnScript.cs`
-- **Variables**: Velocidad base, incremento por puntuación
+- **Implementado**: ✅ Velocidad de tuberías aumenta con la puntuación (`playerScore`).
+- **Ajustes**: ✅ `LogicScript` como Singleton, ✅ `PipeMoveScript` lee la puntuación, ✅ `PipeSpawnScript` corregido para evitar tuberías flotantes.
 
 #### 7. **Efectos de Partículas**
 - **Descripción**: Explosiones al chocar, estrellas al puntuar

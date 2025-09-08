@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class LogicScript : MonoBehaviour
 {
     public int playerScore;
+    public static LogicScript Instance { get; private set; } // Singleton instance
     public Text scoreText;
     public GameObject gameOverScreen;
     
@@ -12,6 +13,19 @@ public class LogicScript : MonoBehaviour
     private AudioSource[] audioSources; // Array de AudioSources
     private AudioSource scoreAudioSource; // Sonido de puntuar
     private AudioSource gameOverAudioSource; // Sonido de game over
+
+    void Awake()
+    {
+        // Configurar el Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
