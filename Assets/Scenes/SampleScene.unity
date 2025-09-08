@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 1053343383}
   - component: {fileID: 1053343382}
   - component: {fileID: 1053343387}
+  - component: {fileID: 1053343388}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Player
@@ -643,6 +644,9 @@ MonoBehaviour:
   rotationSpeed: 5
   maxRotationAngle: 10
   minRotationAngle: -50
+  deathParticlesPrefab: {fileID: 7581131111603657936, guid: 9f50c482ec4c84269837d2350780accd, type: 3}
+  topBoundary: 15
+  bottomBoundary: -15
 --- !u!58 &1053343383
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -753,7 +757,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2276414627421431886, guid: 77f11b6b9562e472ba18363efffc5e1f, type: 3}
+  m_Sprite: {fileID: -6783738168736552412, guid: 6a562c73c4a7a453dadb2c3606b2e80f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -773,8 +777,8 @@ Transform:
   m_GameObject: {fileID: 1053343381}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.01, z: 0}
-  m_LocalScale: {x: 0.5289, y: 0.5289, z: 0.5289}
+  m_LocalPosition: {x: -0.17, y: -0.21, z: 0}
+  m_LocalScale: {x: 0.26799363, y: 0.26799363, z: 0.26799363}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -876,6 +880,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1053343388
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053343381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 47b616f65263a46c984e46d0ddcbf0fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1124787673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1094,7 @@ MonoBehaviour:
   playerScore: 0
   scoreText: {fileID: 1865142299}
   gameOverScreen: {fileID: 23055939}
+  scoreParticlesPrefab: {fileID: 9097226790367082744, guid: 144000d0da64440cc93897ef2b1f8d5b, type: 3}
 --- !u!4 &1523283853
 Transform:
   m_ObjectHideFlags: 0
@@ -1626,6 +1653,9 @@ MonoBehaviour:
   rotationSpeed: 3
   maxRotationAngle: 25
   minRotationAngle: -90
+  deathParticlesPrefab: {fileID: 0}
+  topBoundary: 15
+  bottomBoundary: -15
 --- !u!1 &2032929844
 GameObject:
   m_ObjectHideFlags: 0

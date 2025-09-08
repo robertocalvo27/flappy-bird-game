@@ -18,6 +18,9 @@ public class BirdScript : MonoBehaviour
     [Header("Animator")]
     private Animator birdAnimator; // Componente Animator del pájaro
 
+    [Header("Partículas")]
+    public GameObject deathParticlesPrefab; // Prefab de partículas de muerte
+
     [Header("Límites de Altura")]
     public float topBoundary = 15f; // Límite superior de la pantalla
     public float bottomBoundary = -15f; // Límite inferior (causa Game Over)
@@ -146,6 +149,12 @@ public class BirdScript : MonoBehaviour
         if (birdAnimator != null)
         {
             birdAnimator.enabled = false;
+        }
+
+        // Instanciar partículas de muerte
+        if (deathParticlesPrefab != null)
+        {
+            Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
         }
     }
 }
